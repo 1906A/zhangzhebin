@@ -6,6 +6,8 @@ import com.leyou.pojo.SearchRequest;
 import com.leyou.repository.GoodsRepository;
 import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +31,8 @@ public class SearchController {
         builder.withQuery(QueryBuilders.matchQuery("all",searchRequest.getKey()).operator(Operator.AND));
         //分页查询
         builder.withPageable(PageRequest.of(searchRequest.getPage()-1,searchRequest.getSize()));
+        //根据新品排序
+        builder.withSort(SortBuilders.fieldSort(searchRequest.getSortBy()).order(searchRequest.isDescending()? SortOrder.DESC:SortOrder.ASC));
         //执行查询
         Page<Goods> search = goodsRepository.search(builder.build());
         return new PageResult<Goods>(search.getTotalElements(),search.getContent(),search.getTotalPages());
