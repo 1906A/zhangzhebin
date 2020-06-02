@@ -276,13 +276,14 @@
             <div class="sui-navbar">
                 <div class="navbar-inner filter">
                     <ul class="sui-nav">
-                        <li class="active">
+                        <li >
                             <a href="#">综合</a>
                         </li>
                         <li>
                             <a href="#">销量</a>
                         </li>
-                        <li>
+                        <li @click="orderby('createTime')"
+                        :class="{active:search.sortBy==='createTime'}">
                             <a href="#">新品</a>
                         </li>
                         <li>
@@ -293,37 +294,35 @@
                         </li>
                     </ul>
                     <div class="top-pagination">
-                        <span>共 <i style="color: #222;">7600+</i> 商品</span>
-                        <span><i style="color: red;">2</i>/123</span>
-                        <a class="btn-arrow" href="#" style="display: inline-block">&lt;</a>
-                        <a class="btn-arrow" href="#" style="display: inline-block">&gt;</a>
+                        <span>共 <i style="color: #222;">{{total}}</i> 商品</span>
+                        <span><i style="color: red;">{{search.page}}</i>/{{totalPage}}</span>
+                        <a class="btn-arrow" href="#" style="display: inline-block" @click="prePage">&lt;</a>
+                        <a class="btn-arrow" href="#" style="display: inline-block" @click="nextPage">&gt;</a>
                     </div>
                 </div>
             </div>
             <div class="goods-list">
                 <ul class="yui3-g">
-                    <li class="yui3-u-1-5">
+                    <li class="yui3-u-1-5" v-for="(item,index) in goodList">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <a href="item.html" target="_blank"><img src="img/_/mobile01.png" height="200"/></a>
+                                <a href="item.html" target="_blank"><img :src="item.selected.images" height="200"/></a>
                                 <ul class="skus">
-                                    <li class="selected"><img src="img/_/mobile01.png"></li>
-                                    <li class=""><img src="img/_/mobile01.png"></li>
-                                    <li class=""><img src="img/_/mobile01.png"></li>
+                                    <li :class="{selected:item.selected.id ==sku.id }" v-for=" sku in item.skus" ><img :src="sku.images" @click="item.selected=sku"></li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
                             <div class="price">
                                 <strong>
                                     <em>¥</em>
-                                    <i>6088.00</i>
+                                    <i>{{ly.formatPrice(item.selected.price)}}</i>
                                 </strong>
                             </div>
-                            <div class="attr">
-                                <em>Apple苹果iPhone 6s (A1699)</em>
+                            <div class="attr" :title="item.selected.title">
+                                <em>{{item.selected.title.length >20 ? item.selected.title.substring(0,20):item.selected.title}})</em>
                             </div>
                             <div class="cu">
-                                <em><span>促</span>满一件可参加超值换购</em>
+                                <em><span>促</span>{{item.subTitle.length >15 ? item.subTitle.substring(0,15): item.subTitle}}</em>
                             </div>
                             <div class="commit">
                                 <i class="command">已有2000人评价</i>
@@ -340,33 +339,21 @@
             <div class="fr">
                 <div class="sui-pagination pagination-large">
                     <ul>
-                        <li class="prev disabled">
-                            <a href="#">«上一页</a>
+                        <li class="prev"  :class="{disabled:search.page==1}">
+                            <a @click="prePage">«上一页</a>
                         </li>
-                        <li class="active">
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
+                        <li :class="{active:search.page==index(i)}" v-for="i in Math.min(5,totalPage)" @click="search.page =index(i)">
+                            <a href="#">{{index(i)}}</a>
                         </li>
                         <li class="dotted"><span>...</span></li>
-                        <li class="next">
-                            <a href="#">下一页»</a>
+                        <li class="next" :class="{disabled:search.page==totalPage}">
+                            <a @click="nextPage">下一页»</a>
                         </li>
                     </ul>
                     <div><span>共10页&nbsp;</span><span>
       到第
-      <input type="text" class="page-num">
-      页 <button class="page-confirm" onclick="alert(1)">确定</button></span></div>
+      <input type="text" class="page-num" v-model="search.page">
+      页 <button class="page-confirm" @click="gotoPage">确定</button></span></div>
                 </div>
             </div>
         </div>
@@ -463,16 +450,59 @@
     var vm = new Vue({
         el: "#searchApp",
         data: {
+            ly,
             search:{
                 key:"",
                 page:1
-            }
+            },
+            goodList:[],
+            total:0,//总条数
+            totalPage:0//总页数
         },
         methods:{
+            orderby(v){
+               this.search.sortBy=v;
+               this.search.descending=!this.search.descending;
+               this.initData();
+            },
+            gotoPage(){
+                this.initData();
+            },
+
+            prePage(){
+                if(this.search.page > 1){
+                    this.search.page --;
+                }
+
+            },
+            nextPage(){
+                if(this.search.page <this.totalPage){
+                    this.search.page ++;
+                }
+
+            },
+            index(i){
+                if(this.search.page <=3 ||this.totalPage <=5){
+                    return i;
+                }else if(this.search.page >3 && this.search.page <=this.totalPage-3){
+                    return this.search.page-3+i;
+                }else if(this.search.page >this.totalPage-3){
+                    return this.totalPage-5+i;
+                }
+            },
                 initData(){
                     ly.http.post("/search/search/page",this.search)
                         .then(({data}) =>{
-                            console.info(data)
+                            //console.info(data)
+                            data.items.forEach(item =>{
+                                item.skus=JSON.parse(item.skus);
+                                item.selected=item.skus[0];
+                            });
+                            this.goodList=data.items;
+                            this.total=data.total;
+                            //this.search.page=10;
+                            this.totalPage=data.totalPage;
+                            //alert(data.totalPage);
                         })
                         .catch(error =>{
 
@@ -481,8 +511,26 @@
         },
         created(){
            const search=ly.parse(location.search.substring(1));
+           //alert(location.search.substring(1).indexOf("key"));
+           if(location.search.substring(1).indexOf("page")==-1){
+               search.page=1;
+           }
            this.search=search;
+           //this.search.page=1;
+            this.search.sortBy="createTime";
            this.initData();
+        },
+        watch:{
+          search:{
+              deep:true,
+              handler(newVal,oldVal){
+                  if(!oldVal||!oldVal.key){
+                      return ;
+                  }else{
+                      location.href =location.href.substring(0,location.href.indexOf("?")+1)+ly.stringify(this.search);
+                  }
+              }
+          }
         },
         components:{
             lyTop: () => import("./js/pages/top.js")
