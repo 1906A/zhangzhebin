@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52f68765-4547-4b1b-b718-80f5f798aa89" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../leyou/ly-item/ly-item-interface/src/main/java/com/leyou/BrandClientServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../leyou/ly-item/ly-item-interface/src/main/java/com/leyou/CategoryClientServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../leyou/ly-search/src/main/java/com/leyou/client/BrandClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../leyou/ly-search/src/main/java/com/leyou/client/CategoryClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../leyou/ly-search/src/main/java/com/leyou/pojo/SearchResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../leyou/ribao/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../leyou/ly-common/src/main/java/com/leyou/common/PageResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/ly-common/src/main/java/com/leyou/common/PageResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/controller/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/controller/BrandController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/service/BrandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/service/BrandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/ly-item/ly-item-service/src/main/java/com/leyou/service/CategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../leyou/ly-search/src/main/java/com/leyou/controlloer/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/ly-search/src/main/java/com/leyou/controlloer/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../leyou/ly-search/src/main/java/com/leyou/pojo/SearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/ly-search/src/main/java/com/leyou/pojo/SearchRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../leyou/readme" beforeDir="false" afterPath="$PROJECT_DIR$/../leyou/readme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../leyou/readme/ribao.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +50,36 @@
     <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="490" column="33" selection-start-line="490" selection-start-column="33" selection-end-line="490" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#17;n#ul#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#2;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#div#2;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#div#4;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#div#5;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#div#6;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#10463#10467#1" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#10574#10578#1" expanded="true" />
+                <element signature="e#13577#13583#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -83,6 +120,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -100,14 +138,13 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../leyou" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -116,7 +153,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -143,17 +180,27 @@
       <workItem from="1590637170472" duration="2741000" />
       <workItem from="1590979019457" duration="5130000" />
       <workItem from="1591086185671" duration="6331000" />
-      <workItem from="1591098554445" duration="13636000" />
+      <workItem from="1591098554445" duration="14397000" />
+      <workItem from="1591150908379" duration="7052000" />
     </task>
+    <task id="LOCAL-00001" summary="leyou前台项目">
+      <created>1591112866450</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591112866450</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27838000" />
+    <option name="totallyTimeSpent" value="35651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20522387" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16471216" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -167,12 +214,12 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.2548807" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.2505423" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Problems" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.2505423" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -189,7 +236,8 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="leyou前台项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="leyou前台项目" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/css/pages-list.css">
@@ -222,15 +270,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="275" column="19" selection-start-line="275" selection-start-column="19" selection-end-line="275" selection-end-column="19" />
+        <state relative-caret-position="325">
+          <caret line="490" column="33" selection-start-line="490" selection-start-column="33" selection-end-line="490" selection-end-column="33" />
           <folding>
-            <element signature="n#ul#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#span#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#li#1;n#ul#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#17;n#ul#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#2;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#4;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#5;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#6;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#10375#10379#1" expanded="true" />
+            <element signature="e#10463#10467#1" expanded="true" />
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#script#2;n#html#0;n#!!top" />
+            <element signature="e#10574#10578#1" expanded="true" />
+            <element signature="e#13577#13583#0" expanded="true" />
           </folding>
         </state>
       </provider>
