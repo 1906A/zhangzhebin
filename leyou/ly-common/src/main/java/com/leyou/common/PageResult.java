@@ -2,6 +2,7 @@ package com.leyou.common;
 
 import java.util.List;
 
+
 public class PageResult<T> {
     private Long total;
     private List<T> items;

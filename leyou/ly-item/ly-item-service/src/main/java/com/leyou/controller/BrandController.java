@@ -57,4 +57,9 @@ public class BrandController {
         return  brandService.findBrandByCid(cid);
     }
 
+     //根据品牌id查询品牌对象
+    @RequestMapping("findBrandById")
+    public Brand findBrandById(@RequestParam("id")Long id){
+        return brandService.findBrandById(id);
+    }
 }
