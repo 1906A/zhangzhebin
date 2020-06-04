@@ -1,11 +1,23 @@
 package com.leyou.pojo;
 
+import java.util.Map;
+
 public class SearchRequest {
     private String key;// 搜索条件
 
     private Integer page;// 当前页
     private  String sortBy;
     private boolean descending;
+
+    public Map<String, Object> getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Map<String, Object> filter) {
+        this.filter = filter;
+    }
+
+    private Map<String,Object> filter;
 
     public String getSortBy() {
         return sortBy;
