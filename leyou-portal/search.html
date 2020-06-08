@@ -129,7 +129,7 @@
                 </div>
                 <div class="fl ext"></div>
             </div>
-            <div class="type-wrap logo"  v-else >
+            <div class="type-wrap logo"v-else>
                 <div class="fl key brand">{{f.key}}</div>
                 <div class="value logos">
                     <ul class="logo-list" >
@@ -180,15 +180,17 @@
                         <a class="btn-arrow" href="#" style="display: inline-block" @click="nextPage">&gt;</a>
                     </div>
                 </div>
-            </div>
+            </div>W
             <div class="goods-list">
                 <ul class="yui3-g">
                     <li class="yui3-u-1-5" v-for="(item,index) in goodList">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <a href="item.html" target="_blank"><img :src="item.selected.images" height="200"/></a>
+                                <a :href="'item/'+item.id+'.html'" target="_blank"><img :src="item.selected.images" height="200"/></a>
                                 <ul class="skus">
-                                    <li :class="{selected:item.selected.id ==sku.id }" v-for=" sku in item.skus" ><img :src="sku.images" @click="item.selected=sku"></li>
+                                    <li :class="{selected:item.selected.id ==sku.id }" v-for=" sku in item.skus" >
+                                        <img :src="sku.images" @click="item.selected=sku">
+                                    </li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
@@ -343,19 +345,19 @@
             show:false
         },
         methods:{
-            paramSpec(f,opt){
+            paramSpec(item,opt){
                 let searchTemp={};
                 Object.assign(searchTemp,this.search);
                 let value=0;
-                if(f.key=="分类"){
+                if(item.key=="分类"){
                     value=opt.id;
-                }else if(f.key=="品牌"){
+                }else if(item.key=="品牌"){
                     value=opt.id;
                 }else{
                     value=opt.name;
                 }
 
-                searchTemp.filter[f.key]=value;
+                searchTemp.filter[item.key]=value;
                 this.search =searchTemp;
             },
             orderby(v){
@@ -401,7 +403,7 @@
                             //this.search.page=10;
                             this.totalPage=data.totalPage;
                             //alert(data.totalPage);
-
+                            this.filters=[];
                             this.filters.push({
                                 key:"分类",
                                 options:data.categoryList
@@ -409,9 +411,9 @@
                             this.filters.push({
                                 key:"品牌",
                                 options:data.brandList
-                            });
+                            })
                             data.paramList.forEach(p=>{
-                                vm.filters.push(p);
+                                this.filters.push(p);
                             })
                         })
                         .catch(error =>{
