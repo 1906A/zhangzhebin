@@ -38,4 +38,10 @@ public class SpecParamService {
         return specParamMapper.select(specParam);
     }
 
+    public List<SpecParam> findparamByCidAndGeneric(Long cid, boolean generic) {
+        SpecParam specParam = new SpecParam();
+        specParam.setCid(cid);
+        specParam.setGeneric(generic);
+        return  specParamMapper.select(specParam);
+    }
 }

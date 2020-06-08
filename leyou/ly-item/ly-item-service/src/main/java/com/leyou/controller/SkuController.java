@@ -19,4 +19,5 @@ public class SkuController {
     public List<Sku> findSkusBySpuId(@RequestParam("id")Long id){
         return skuService.findSkusBySpuId(id);
     }
+
 }

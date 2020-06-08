@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @RequestMapping("specParam")
-public interface SpecClientServer {
-    @RequestMapping("paramByCid")
-    public List<SpecParam> findSpecParamByCidAndSearch(@RequestParam("cid")Long cid);
-
-
-
+public interface SpecParamClientServer {
+    @RequestMapping("paramByCidAndGeneric")
+    public List<SpecParam> findparamByCidAndGeneric(@RequestParam("cid")Long cid, @RequestParam("generic")boolean generic);
 }

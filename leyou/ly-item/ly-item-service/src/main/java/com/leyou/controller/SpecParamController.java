@@ -33,4 +33,8 @@ public class SpecParamController {
     public List<SpecParam> findSpecParamByCidAndSearch(@RequestParam("cid")Long cid){
         return  specParamService.findSpecParamByCidAndSearch(cid);
     }
+    @RequestMapping("paramByCidAndGeneric")
+    public List<SpecParam> findparamByCidAndGeneric(@RequestParam("cid")Long cid,@RequestParam("generic")boolean generic){
+        return  specParamService.findparamByCidAndGeneric(cid,generic);
+    }
     }

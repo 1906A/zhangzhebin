@@ -151,4 +151,8 @@ public class SpuService {
     spu.setSaleable(saleable ==1? true:false);
     spuMapper.updateByPrimaryKeySelective(spu);
     }
+
+    public Spu findSpuById(Long spuId) {
+       return spuMapper.selectByPrimaryKey(spuId);
+    }
 }
