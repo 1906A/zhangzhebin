@@ -428,20 +428,10 @@
 						<div class="tab-content tab-wraped">
 							<div id="one" class="tab-pane active">
 								<ul class="goods-intro-list unstyled" style="list-style: none;">
-									<li>分辨率：1920*1080(FHD)</li>
-									<li>后置摄像头：1200万像素</li>
-									<li>前置摄像头：500万像素</li>
-									<li>核 数：其他</li>
-									<li>频 率：以官网信息为准</li>
-									<li>品牌： Apple</li>
-									<li>商品名称：APPLEiPhone 6s Plus</li>
-									<li>商品编号：1861098</li>
-									<li>商品毛重：0.51kg</li>
-									<li>商品产地：中国大陆</li>
-									<li>热点：指纹识别，Apple Pay，金属机身，拍照神器</li>
-									<li>系统：苹果（IOS）</li>
-									<li>像素：1000-1600万</li>
-									<li>机身内存：64GB</li>
+									<li v-for="group in groups">
+                                        <div v-for="param in group.params">{{param.name}}:{{param.value}}</div>
+                                    <li>111:222</li>
+                                    </li>
 								</ul>
 								<!--商品详情-->
 								<div class="intro-detail" th:utext="${spudetail.description}">
@@ -605,7 +595,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 <script src="/js/vue/vue.js"></script>
 <script src="/js/axios.min.js"></script>
@@ -621,7 +611,7 @@
 	  	indexes[key]=0;
 	  })
 	  const groups=/*[[${groups}]]*/[];
-	  console.info(categoryList);
+	  console.info(groups);
   </script>
 <script>
     var itemVm = new Vue({
@@ -645,14 +635,14 @@
         		return this.sku.images.split(",");
 		},
 		group(){
-        		groups.forEach(param =>{
+        		groups.forEach(group =>{
                     group.params.forEach(param =>{
                          if(param.generic){
                          	//通用属性，去spu的genericSpec中获取
 				param.value=this.genericSpec[param.id];
 			}else{
 				          //特有属性值，去sku中获取
-				param.v=JSON.parse(this.sku.ownSpec)[param.id]
+				param.value=JSON.parse(this.sku.ownSpec)[param.id]
 			}
 					})
 				})
