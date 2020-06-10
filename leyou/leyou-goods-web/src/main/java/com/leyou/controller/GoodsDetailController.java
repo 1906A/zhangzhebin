@@ -7,7 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +32,8 @@ public class GoodsDetailController {
     SpecParamClient specParamClient;
     @Autowired
     BrandClient brandClient;
+    @Autowired
+    TemplateEngine templateEngine;
     @RequestMapping("hello")
     public String hello(Model model){
         String name="张哲彬";
@@ -72,7 +79,36 @@ public class GoodsDetailController {
         model.addAttribute("brand",brand);
         model.addAttribute("skuList",skuList);
         model.addAttribute("groups",groups);
+        //写入静态文件
+        pubcreatHtml(spu,spudetail,categoryList,brand,skuList,groups,paramMap);
         return "item";
 
            }
+
+    private void pubcreatHtml(Spu spu, SpuDetail spudetail, List<Category> categoryList, Brand brand, List<Sku> skuList, List<SpecGroup> groups, Map<Long, String> paramMap) {
+                 PrintWriter writer=null;
+        try {
+            //1.创建上下文
+            Context context=new Context();
+            //把数据放入到上下文
+            context.setVariable("spu",spu);
+            context.setVariable("spudetail",spudetail);
+            context.setVariable("categoryList",categoryList);
+            context.setVariable("brand",brand);
+            context.setVariable("skuList",skuList);
+            context.setVariable("groups",groups);
+            context.setVariable("paramMap",paramMap);
+            //写入文件，写入流
+            File file=new File("D:\\peizhi\\nginx-1.16.1\\html\\"+spu.getId()+".html");
+             writer=new PrintWriter(file);
+             //执行静态化
+            templateEngine.process("item",context,writer);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            if(writer!=null){
+                writer.close();
+            }
+        }
+    }
 }

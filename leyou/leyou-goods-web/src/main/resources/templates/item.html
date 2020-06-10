@@ -430,7 +430,6 @@
 								<ul class="goods-intro-list unstyled" style="list-style: none;">
 									<li v-for="group in groups">
                                         <div v-for="param in group.params">{{param.name}}:{{param.value}}</div>
-                                    <li>111:222</li>
                                     </li>
 								</ul>
 								<!--商品详情-->
@@ -622,8 +621,7 @@
 			paramMap,
 			genericSpec,
 			skus,
-			indexes,
-			groups
+			indexes
         },
 		computed:{
         	sku(){
@@ -634,7 +632,7 @@
 		images(){
         		return this.sku.images.split(",");
 		},
-		group(){
+		groups(){
         		groups.forEach(group =>{
                     group.params.forEach(param =>{
                          if(param.generic){
