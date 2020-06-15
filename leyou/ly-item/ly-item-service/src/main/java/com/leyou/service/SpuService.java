@@ -12,6 +12,7 @@ import com.leyou.pojo.Spu;
 import com.leyou.pojo.SpuDetail;
 import com.leyou.pojo.Stock;
 import com.leyou.vo.SpuVo;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,8 @@ public class SpuService {
     private SkuMapper skuMapper;
     @Autowired
     private StockMapper stockMapper;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     public PageResult<SpuVo> findSpuPage(String key, Integer page, Integer rows, Integer saleable) {
         PageHelper.startPage(page,rows);
@@ -42,6 +45,7 @@ public class SpuService {
      //保存商品信息
     public void saveSpuDetail(SpuVo spuVo) {
         Date nowDate=new Date();
+
         //1.保存spu
         //2.保存spu_detail
         //3.保存sku
@@ -83,7 +87,12 @@ public class SpuService {
             stock.setStock(sku.getStock());
             stockMapper.insert(stock);
         });
+        //发送mq消息
+        this.sendMsg("insert",spu.getId());
 ;    }
+    public  void sendMsg(String type,Long spuId){
+        amqpTemplate.convertAndSend("item.exchanges","item."+type,spuId);
+    }
 
     public SpuDetail findSpuDetailBySpuId(Long spuId) {
        return  spuDetailMapper.selectByPrimaryKey(spuId);
@@ -107,12 +116,17 @@ public class SpuService {
         spuDetailMapper.updateByPrimaryKeySelective(spuDetail);
 
 
-        List<Sku> skus=spuVo.getSkus();
+/*        List<Sku> skus=spuVo.getSkus();
         skus.forEach(s ->{
             s.setEnable(false);
             skuMapper.updateByPrimaryKey(s);
             stockMapper.deleteByPrimaryKey(s.getId());
-        });
+        });*/
+         List<Sku> skuList=skuMapper.findSkusBySpuId(spuVo.getId());
+         skuList.forEach(s ->{
+             skuMapper.deleteByPrimaryKey(s.getId());
+             stockMapper.deleteByPrimaryKey(s.getId());
+         });
         //sku
         List<Sku> skus1= spuVo.getSkus();
         skus1.forEach(sku ->{
@@ -127,6 +141,7 @@ public class SpuService {
             stock.setStock(sku.getStock());
             stockMapper.insert(stock);
         });
+        this.sendMsg("update",spuVo.getId());
     }
 
     public void deleteSpuBySpuId(Long spuId) {
@@ -142,7 +157,8 @@ public class SpuService {
         spuDetailMapper.deleteByPrimaryKey(spuId);
         //删除spu
         spuMapper.deleteByPrimaryKey(spuId);
-
+        //删除商品发送mq消息
+        this.sendMsg("delete",spuId);
     }
 
     public void upOrDown(Long spuId,int saleable) {
@@ -154,5 +170,9 @@ public class SpuService {
 
     public Spu findSpuById(Long spuId) {
        return spuMapper.selectByPrimaryKey(spuId);
+    }
+
+    public SpuVo findSpuBySpuId(Long spuId) {
+        return spuMapper.findSpuBySpuId(spuId);
     }
 }

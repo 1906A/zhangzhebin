@@ -1,39 +1,18 @@
 package com.leyou.controller;
 
-import com.leyou.client.*;
-import com.leyou.pojo.*;
+import com.leyou.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
 public class GoodsDetailController {
     @Autowired
-    SpuClient spuClient;
-    @Autowired
-    SkuClient skuClient;
-    @Autowired
-    SpecGroupClient specGroupClient;
-    @Autowired
-    CategoryClient categoryClient;
-    @Autowired
-    SpecParamClient specParamClient;
-    @Autowired
-    BrandClient brandClient;
-    @Autowired
-    TemplateEngine templateEngine;
+    GoodService goodService;
     @RequestMapping("hello")
     public String hello(Model model){
         String name="张哲彬";
@@ -43,7 +22,7 @@ public class GoodsDetailController {
     @RequestMapping("item/{spuId}.html")
     public String item(@PathVariable("spuId")Long spuId, Model model){
 
-        //spu
+/*        //spu
         Spu spu = spuClient.findSpuById(spuId);
 
         //spudetail
@@ -71,6 +50,7 @@ public class GoodsDetailController {
         specParamList.forEach(param->{
             paramMap.put(param.getId(),param.getName());
         });
+
         model.addAttribute("paramMap",paramMap);
 
         model.addAttribute("spu",spu);
@@ -78,14 +58,16 @@ public class GoodsDetailController {
         model.addAttribute("categoryList",categoryList);
         model.addAttribute("brand",brand);
         model.addAttribute("skuList",skuList);
-        model.addAttribute("groups",groups);
+        model.addAttribute("groups",groups);*/
+        Map<String, Object> map = goodService.item(spuId);
+        model.addAllAttributes(map);
         //写入静态文件
-        pubcreatHtml(spu,spudetail,categoryList,brand,skuList,groups,paramMap);
+        goodService.creatHtml(spuId);
         return "item";
 
            }
 
-    private void pubcreatHtml(Spu spu, SpuDetail spudetail, List<Category> categoryList, Brand brand, List<Sku> skuList, List<SpecGroup> groups, Map<Long, String> paramMap) {
+/*    public void creatHtml(Spu spu, SpuDetail spudetail, List<Category> categoryList, Brand brand, List<Sku> skuList, List<SpecGroup> groups, Map<Long, String> paramMap) {
                  PrintWriter writer=null;
         try {
             //1.创建上下文
@@ -110,5 +92,5 @@ public class GoodsDetailController {
                 writer.close();
             }
         }
-    }
+    }*/
 }

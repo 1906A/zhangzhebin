@@ -9,6 +9,7 @@ import com.leyou.item.Goods;
 import com.leyou.pojo.Sku;
 import com.leyou.pojo.SpecParam;
 import com.leyou.pojo.SpuDetail;
+import com.leyou.repository.GoodsRepository;
 import com.leyou.vo.SpuVo;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class GoodsService {
     private SpecClient specClient;
     @Autowired
     private SpuClient spuClient;
+    @Autowired
+    private GoodsRepository goodsRepository;
 
     @Autowired
     private static final ObjectMapper MAPPER=new ObjectMapper();
@@ -127,6 +130,21 @@ public class GoodsService {
             }
         }
         return result;
+    }
+
+    public void editEsData(Long spuId)throws  Exception {
+        //1.根据spuId查询spu
+        SpuVo spuVo = spuClient.findSpuBySpuId(spuId);
+
+        //2.spu转换成goods
+        Goods goods = this.convert(spuVo);
+        //3.持久化es
+        goodsRepository.save(goods);
+    }
+
+    public void deleteEsData(Long spuId) {
+        goodsRepository.deleteById(spuId);
+
     }
 }
 
