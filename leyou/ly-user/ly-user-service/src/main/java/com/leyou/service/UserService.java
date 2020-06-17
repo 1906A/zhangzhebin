@@ -2,8 +2,12 @@ package com.leyou.service;
 
 import com.leyou.dao.UserMapper;
 import com.leyou.pojo.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -28,5 +32,31 @@ public class UserService {
         }
         //3:用户名存在 false true 手机号存在false truer
         return  result;
+    }
+
+    public void insertUser(User user) {
+        //盐值 数据生成字符串
+        String salt = UUID.randomUUID().toString().substring(0,32);
+
+       String password= this.getPsw(user.getPassword(),salt);
+       user.setPassword(password);
+       user.setCreated(new Date());
+       user.setSalt(salt);
+        userMapper.insert(user);
+    }
+    //通过原生密码——盐值生成md5加密后的密码
+    public String getPsw(String password,String salt){
+        //如何使用md5加密
+        String md5Hex = DigestUtils.md5Hex(password + salt);
+
+        return md5Hex;
+
+    }
+
+    public User findUser(String username) {
+        User user=new User();
+        user.setUsername(username);
+        User user1 = userMapper.selectOne(user);
+        return user1;
     }
 }
