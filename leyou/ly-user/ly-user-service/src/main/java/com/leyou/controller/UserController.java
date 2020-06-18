@@ -61,9 +61,19 @@ public class UserController {
     @GetMapping("/query")
     public  User query(@RequestParam("username")String username,@RequestParam("password")String password){
         System.out.println("查询用户: username"+username+"password"+password);
-        return new User();
+        //1.根据用户名查询用户信息
+        User user=userService.findUser(username);
+        if(user!=null) {
+        String newPassword =DigestUtils.md5Hex(password+user.getSalt());
+        System.out.println("newPassowrd:"+newPassword);
+        System.out.println("password:"+user.getPassword());
+        if(user.getPassword().equals(newPassword)){
+            return user;
+        }
+        }
+        return null;
     }
-    //用户登录
+/*    //用户登录
     @PostMapping("login")
     public String login(@RequestParam("username")String username,@RequestParam("password")String password){
         String result="1";
@@ -77,5 +87,5 @@ public class UserController {
             }
         }
         return  result;
-    }
+    }*/
 }
