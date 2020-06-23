@@ -73,19 +73,19 @@ public class UserController {
         }
         return null;
     }
-/*    //用户登录
-    @PostMapping("login")
+   //用户登录
+/*    @PostMapping("login")
     public String login(@RequestParam("username")String username,@RequestParam("password")String password){
-        String result="1";
+       String result="1";
         //1.根据用户名查询用户信息
         User user=userService.findUser(username);
         if(user!=null){
-            //2.对比密码
-            String newPassword = DigestUtils.md5Hex(password + user.getSalt());
+           //2.对比密码
+           String newPassword = DigestUtils.md5Hex(password + user.getSalt());
             if(newPassword.equals(user.getPassword())){
                 result="0";
             }
         }
         return  result;
-    }*/
+  }*/
 }
